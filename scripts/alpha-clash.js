@@ -12,6 +12,12 @@
 
 function handleKeyboardButtonPress(event) {
     const playerPressed = event.key;
+    console.log('player pressed', playerPressed);
+
+    // stop the game if pressed 'Esc'
+    if (playerPressed === 'Escape') {
+        gameOver();
+    }
 
     //  key player is expected to press
     const currentAlphabetElement = document.getElementById('current-alphabet');
@@ -121,4 +127,12 @@ function play() {
 function gameOver() {
     hideElementById('play-ground');
     showElementById('final-score');
+    const lastScore = getTextElementValueById('current-score');
+    console.log(lastScore);
+    setTextElementValueById('last-score', lastScore);
+
+    // clear the last selected alphabet highlight
+    const currentAlphabet = getElementTextById('current-alphabet');
+    // console.log(currentAlphabet);
+    removeBackgroundColorById(currentAlphabet);
 }
